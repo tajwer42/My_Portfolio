@@ -1,0 +1,110 @@
+{% extends "base.html" %}      
+      {% block slider %}
+      <section class="home-slider owl-carousel js-fullheight">
+        <div class="slider-item js-fullheight">
+          <div class="overlay"></div>
+          <div class="container">
+            <div class="row slider-text align-items-center text-center justify-content-center" data-scrollax-parent="true">
+              <div class="col-md-12 ftco-animate" data-scrollax=" properties: { translateY: '70%' }">
+                <p><a href="#" class="scroll">Hello! I'm</a></p>
+                <h1 class="mb-3" data-scrollax="properties: { translateY: '30%', opacity: 1.6 }">Beckham Muff</h1>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="slider-item js-fullheight">
+          <div class="overlay"></div>
+          <div class="container">
+            <div class="row slider-text align-items-center text-center justify-content-center" data-scrollax-parent="true">
+              <div class="col-md-12 ftco-animate" data-scrollax=" properties: { translateY: '70%' }">
+                <p><a href="#" class="scroll">I'm from Berlin</a></p>
+                <h1 class="mb-3" data-scrollax="properties: {translateY: '30%', opacity: 1.6}">A Web Designer</h1>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      {% endblock %}
+
+      {% block aboutsection %}
+      {% load static %}
+      <section class="ftco-section about-section">
+        <div class="container">
+          <div class="row d-flex" data-scrollax-parent="true">
+            <div class="col-md-4 author-img" style="background-image: url({% static 'images/author-1.jpg' %});" data-scrollax=" properties: { translateY: '-70%'}"></div>
+            <div class="col-md-2"></div>
+            <div class="col-md-6 wrap ftco-animate">
+              <div class="about-desc">
+                <h1 class="bold-text">About</h1>
+                <div class="p-5">
+                  <h2 class="mb-5">Hi! I'm Beckham Muff</h2>
+                  <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in.</p>
+                  <p><a href="#">Checkout my resume</a></p>
+                  <ul class="ftco-footer-social list-unstyled mt-4">
+                    <li><a href="#"><span class="icon-twitter"></span></a></li>
+                    <li><a href="#"><span class="icon-facebook"></span></a></li>
+                    <li><a href="#"><span class="icon-instagram"></span></a></li>
+                  </ul>
+                  <h5>Contact me here!</h5>
+                  <p>Email: <a href="#">beckham@email</a></p>
+                  <p>Phone: <a href="#">(123)-456-789</a></p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    {% endblock %}
+
+    {% block servicesection %} 
+    {% include "service/common_service_data.html" %}
+    {% endblock %} 
+    
+
+    {% block portfoliosection %}
+    {% include "project/common_portfolio_data.html" %}
+    {% endblock %}
+      
+      {% block countersection %}
+      <section class="ftco-section ftco-counter" id="section-counter">
+        <div class="container">
+          <div class="row justify-content-center mb-5 pb-5">
+            <div class="col-md-7 text-center heading-section ftco-animate">
+              <span>Portfolio</span>
+              <h2>I love to share my achievements</h2>
+            </div>
+          </div>
+          <div class="row d-flex justify-content-start">
+            <div class="col-md-5 col-sm-5 counter-wrap ftco-animate">
+              <div class="block-18">
+                <div class="text">
+                  <span class="ftco-label">Clients</span>
+                  <strong class="number" data-number="420">0</strong>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row d-flex justify-content-center">
+            <div class="col-md-5 col-sm-5 counter-wrap ftco-animate">
+              <div class="block-18">
+                <div class="text">
+                  <span class="ftco-label">Project done</span>
+                  <strong class="number" data-number="890">0</strong>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row d-flex justify-content-end">
+            <div class="col-md-5 counter-wrap ftco-animate">
+              <div class="block-18">
+                <div class="text">
+                  <span class="ftco-label">Cups of coffee</span>
+                  <strong class="number" data-number="1000">0</strong>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      {% endblock %}

@@ -23,6 +23,11 @@ from django.views.static import serve
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('home.urls')),
+    url('', include('resume.urls')),
+    url('',include('service.urls')),
+    url('',include('contact.urls')),
+    url('',include('project.urls')),
+    url('',include('blog.urls')),
 ]
 
 # Serve the static HTML

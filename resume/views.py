@@ -1,3 +1,4 @@
 from django.shortcuts import render
 
-# Create your views here.
+def my_about(request):
+    return render(request, 'resume/about.html', {})

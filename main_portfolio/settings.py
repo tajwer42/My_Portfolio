@@ -16,7 +16,7 @@ import os
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 # Used for a default title
-APP_NAME = "Monem Tajwer's Portfolio"   # Add
+APP_NAME = "Monem Tajwer's Portfolio"   # App Name
 
 
 # Quick-start development settings - unsuitable for production
@@ -42,7 +42,13 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     # Extensions - installed with pip3 / requirements.txt
-    'home.apps.HomeConfig',
+    'home.apps.HomeConfig',  #home app
+    'blog.apps.BlogConfig',  #blog app
+    'contact.apps.ContactConfig', #contact app
+    'project.apps.ProjectConfig', #portfolio_project app
+    'resume.apps.ResumeConfig',  #resume app
+    'service.apps.ServiceConfig', #service app
+
 ]
 
 MIDDLEWARE = [
