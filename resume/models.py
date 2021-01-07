@@ -23,7 +23,7 @@ class ResumeProfile(models.Model):
     def __str__(self):
         return self.name
 
-class ResumeProfilePricture(models.Model):
+class ResumeProfilePicture(models.Model):
     resume = models.ForeignKey(ResumeProfile, related_name='resume_picture',on_delete=models.CASCADE,)
     title = models.CharField(max_length=100, blank=False, null=False, help_text="Name of the picture")
     cover = models.ImageField(upload_to='profile_image/')
@@ -118,7 +118,7 @@ class Certification(models.Model):
     def __str__(self):
         return self.name
 
-class CertificatePricture(models.Model):
+class CertificatePicture(models.Model):
     resume = models.ForeignKey(Certification, related_name='certificate_picture',on_delete=models.CASCADE,)
     title = models.CharField(max_length=100, blank=False, null=False, help_text="Name of the picture")
     cover = models.ImageField(upload_to='certificate_image/')
@@ -141,7 +141,7 @@ class Project(models.Model):
     def __str__(self):
         return self.name
 
-class ProjectPricture(models.Model):
+class ProjectPicture(models.Model):
     resume = models.ForeignKey(Project, related_name='project_picture',on_delete=models.CASCADE,)
     title = models.CharField(max_length=100, blank=False, null=False, help_text="Name of the picture")
     cover = models.ImageField(upload_to='project_image/')

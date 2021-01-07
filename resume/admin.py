@@ -4,7 +4,7 @@ from resume import models
 class ResumeProfileAdmin(admin.ModelAdmin):
     list_display = ('name', 'email',)
 
-class ResumeProfilePrictureAdmin(admin.ModelAdmin):
+class ResumeProfilePictureAdmin(admin.ModelAdmin):
     list_display = ('title',)
 
 class EducationAdmin(admin.ModelAdmin):
@@ -25,27 +25,27 @@ class ReferenceAdmin(admin.ModelAdmin):
 class CertificationAdmin(admin.ModelAdmin):
     list_display = ('name','organization',)
 
-class CertificatePrictureAdmin(admin.ModelAdmin):
+class CertificatePictureAdmin(admin.ModelAdmin):
     list_display = ('title',)
 
 class ProjectAdmin(admin.ModelAdmin):
     list_display = ('name','created_date',)
 
-class ProjectPrictureAdmin(admin.ModelAdmin):
+class ProjectPictureAdmin(admin.ModelAdmin):
     list_display = ('title',)
 
 class ActivityAdmin(admin.ModelAdmin):
     list_display = ('name','activity_date',)
 
 admin.site.register(models.ResumeProfile, ResumeProfileAdmin)
-admin.site.register(models.ResumeProfilePricture, ResumeProfilePrictureAdmin)
+admin.site.register(models.ResumeProfilePicture, ResumeProfilePictureAdmin)
 admin.site.register(models.Education, EducationAdmin)
 admin.site.register(models.Experience, ExperienceAdmin)
 admin.site.register(models.SkillCategory, SkillCategoryAdmin)
 admin.site.register(models.Skill, SkillAdmin)
 admin.site.register(models.Reference, ReferenceAdmin)
 admin.site.register(models.Certification, CertificationAdmin)
-admin.site.register(models.CertificatePricture, CertificatePrictureAdmin)
+admin.site.register(models.CertificatePicture, CertificatePictureAdmin)
 admin.site.register(models.Project, ProjectAdmin)
-admin.site.register(models.ProjectPricture, ProjectPrictureAdmin)
+admin.site.register(models.ProjectPicture, ProjectPictureAdmin)
 admin.site.register(models.Activity, ActivityAdmin)
