@@ -8,6 +8,7 @@ class ResumeProfile(models.Model):
     designation = models.CharField(max_length=200, blank=True, null=True)
     career_goal=models.CharField(max_length=500, blank=True, null=True)
     city = models.CharField(max_length=100, blank=True, null=True)
+    country = models.CharField(max_length=100, blank=True, null=True)
     address = models.CharField(max_length=100, blank=True, null=True)
     phone_number = models.CharField(max_length=100, blank=True, null=True)
     email=models.EmailField(blank=False, null=False)
@@ -15,7 +16,7 @@ class ResumeProfile(models.Model):
     linkedin_url=models.URLField(blank=True, null=True)
     twitter_url=models.URLField(blank=True, null=True)
     facebook_url=models.URLField(blank=True, null=True)
-    summary=models.CharField(max_length=400, blank=True, null=True)
+    summary=models.TextField(blank=True, null=True)
 
     class Meta:
         verbose_name_plural = 'ResumeProfile'

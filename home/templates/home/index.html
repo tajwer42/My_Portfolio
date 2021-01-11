@@ -7,7 +7,7 @@
             <div class="row slider-text align-items-center text-center justify-content-center" data-scrollax-parent="true">
               <div class="col-md-12 ftco-animate" data-scrollax=" properties: { translateY: '70%' }">
                 <p><a href="#" class="scroll">Hello! I'm</a></p>
-                <h1 class="mb-3" data-scrollax="properties: { translateY: '30%', opacity: 1.6 }">Beckham Muff</h1>
+                <h1 class="mb-3" data-scrollax="properties: { translateY: '30%', opacity: 1.6 }">{{ resume.name }}</h1>
               </div>
             </div>
           </div>
@@ -18,8 +18,8 @@
           <div class="container">
             <div class="row slider-text align-items-center text-center justify-content-center" data-scrollax-parent="true">
               <div class="col-md-12 ftco-animate" data-scrollax=" properties: { translateY: '70%' }">
-                <p><a href="#" class="scroll">I'm from Berlin</a></p>
-                <h1 class="mb-3" data-scrollax="properties: {translateY: '30%', opacity: 1.6}">A Web Designer</h1>
+                <p><a href="#" class="scroll">I'm from {{ resume.country }}</a></p>
+                <h1 class="mb-3" data-scrollax="properties: {translateY: '30%', opacity: 1.6}">{{ resume.designation }}</h1>
               </div>
             </div>
           </div>
@@ -32,23 +32,23 @@
       <section class="ftco-section about-section">
         <div class="container">
           <div class="row d-flex" data-scrollax-parent="true">
-            <div class="col-md-4 author-img" style="background-image: url({% static 'images/author-1.jpg' %});" data-scrollax=" properties: { translateY: '-70%'}"></div>
+            <div class="col-md-4 author-img" style="background-image: url({{ resume_pic.cover.url }});" data-scrollax=" properties: { translateY: '-70%'}"></div>
             <div class="col-md-2"></div>
             <div class="col-md-6 wrap ftco-animate">
               <div class="about-desc">
                 <h1 class="bold-text">About</h1>
                 <div class="p-5">
-                  <h2 class="mb-5">Hi! I'm Beckham Muff</h2>
-                  <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in.</p>
-                  <p><a href="#">Checkout my resume</a></p>
+                  <h2 class="mb-5">Hi! I'm {{ resume.name }}</h2>
+                  <p>{{ resume.summary }}</p>
+                  <p><a href="{% url 'resume:my_abouts' %}" class="checkout-resume">Checkout my resume</a></p>
                   <ul class="ftco-footer-social list-unstyled mt-4">
-                    <li><a href="#"><span class="icon-twitter"></span></a></li>
-                    <li><a href="#"><span class="icon-facebook"></span></a></li>
-                    <li><a href="#"><span class="icon-instagram"></span></a></li>
+                    <li><a href="{{ resume.twitter_url }}"><span class="icon-twitter"></span></a></li>
+                    <li><a href="{{ resume.facebook_url }}"><span class="icon-facebook"></span></a></li>
+                    <li><a href="{{ resume.linkedin_url }}"><span class="icon-linkedin"></span></a></li>
                   </ul>
                   <h5>Contact me here!</h5>
-                  <p>Email: <a href="#">beckham@email</a></p>
-                  <p>Phone: <a href="#">(123)-456-789</a></p>
+                  <p>Email: <a href="{% url 'contact:my_contacts' %}" class="checkout-resume">{{ resume.email }}</a></p>
+                  <p>Phone: <a href="#" class="checkout-resume">{{ resume.phone_number }}</a></p>
                 </div>
               </div>
             </div>

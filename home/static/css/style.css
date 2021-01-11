@@ -8693,6 +8693,10 @@ textarea.form-control {
     color: #121212;
     font-style: italic; }
 
+.checkout-resume{
+  position: relative;
+}
+
 #ftco-loader {
   position: fixed;
   width: 96px;

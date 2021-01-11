@@ -3,8 +3,11 @@ from django.contrib import messages
 from .forms import ContactFeedbackForm
 from django.shortcuts import redirect
 from django.core.mail import mail_admins
+from resume.models import ResumeProfilePicture,ResumeProfile
 
 def my_contact(request):
+    resume = ResumeProfile.objects.get(pk=1)
+    resume_pic = ResumeProfilePicture.objects.get(pk=2)
     if request.method == 'POST':
         f = ContactFeedbackForm(request.POST)
         if f.is_valid():
@@ -21,4 +24,9 @@ def my_contact(request):
             return redirect('contact:my_contacts')
     else:
         f = ContactFeedbackForm()
-    return render(request, 'contact/contact.html', {'form': f})
+    context = {
+            'form': f,
+            'resume_pic': resume_pic,
+            'resume': resume
+        }
+    return render(request, 'contact/contact.html', context)
