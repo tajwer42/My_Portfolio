@@ -17,6 +17,7 @@ class ResumeProfile(models.Model):
     twitter_url=models.URLField(blank=True, null=True)
     facebook_url=models.URLField(blank=True, null=True)
     summary=models.TextField(blank=True, null=True)
+    bio=models.TextField(blank=True, null=True)
 
     class Meta:
         verbose_name_plural = 'ResumeProfile'
@@ -25,7 +26,7 @@ class ResumeProfile(models.Model):
         return self.name
 
 class ResumeProfilePicture(models.Model):
-    resume = models.ForeignKey(ResumeProfile, related_name='resume_picture',on_delete=models.CASCADE,)
+    resume_profile = models.ForeignKey(ResumeProfile, related_name='resume_picture',on_delete=models.CASCADE,)
     title = models.CharField(max_length=100, blank=False, null=False, help_text="Name of the picture")
     cover = models.ImageField(upload_to='profile_image/')
 
@@ -98,7 +99,7 @@ class Reference(models.Model):
     linkedin_url=models.URLField(blank=True, null=True)
 
     class Meta:
-        verbose_name_plural='reference'
+        verbose_name_plural='Reference'
 
     def __str__(self):
         return self.name_of_refree
@@ -114,13 +115,13 @@ class Certification(models.Model):
     credential_url = models.URLField(blank=True, null=True)
 
     class Meta:
-        verbose_name_plural='certification'
+        verbose_name_plural='Certification'
 
     def __str__(self):
         return self.name
 
 class CertificatePicture(models.Model):
-    resume = models.ForeignKey(Certification, related_name='certificate_picture',on_delete=models.CASCADE,)
+    certificate_name = models.ForeignKey(Certification, related_name='certificate_picture',on_delete=models.CASCADE,)
     title = models.CharField(max_length=100, blank=False, null=False, help_text="Name of the picture")
     cover = models.ImageField(upload_to='certificate_image/')
 
@@ -130,20 +131,40 @@ class CertificatePicture(models.Model):
     def __str__(self):
         return self.title
 
+class ProjectCategory(models.Model):
+    category_name = models.CharField(max_length=100, blank=True, null=True, help_text="Category Name of the project(personal/professional)")
+
+    class Meta:
+        verbose_name_plural='ProjectCategory'
+    
+    def __str__(self):
+        return self.category_name
+
+class ProjectSubCategory(models.Model):
+    sub_category_name = models.CharField(max_length=100, blank=True, null=True, help_text="Sub Category Name of the project(webdevelpment/design)")
+
+    class Meta:
+        verbose_name_plural='ProjectSubCategory'
+    
+    def __str__(self):
+        return self.sub_category_name
+
 class Project(models.Model):
     resume = models.ForeignKey(ResumeProfile, related_name='project',on_delete=models.CASCADE,)
     name = models.CharField(max_length=500, blank=False, null=False)
     created_date = models.DateField(blank=True, null=True)
     description = models.TextField(blank=True, null=True)
+    category = models.ForeignKey(ProjectCategory, related_name="project_category",on_delete=models.CASCADE,)
+    subcategory = models.ForeignKey(ProjectSubCategory, related_name="project_sub_category",on_delete=models.CASCADE,)
 
     class Meta:
-        verbose_name_plural='project'
+        verbose_name_plural='Project'
 
     def __str__(self):
         return self.name
 
 class ProjectPicture(models.Model):
-    resume = models.ForeignKey(Project, related_name='project_picture',on_delete=models.CASCADE,)
+    project_name = models.ForeignKey(Project, related_name='project_picture',on_delete=models.CASCADE,)
     title = models.CharField(max_length=100, blank=False, null=False, help_text="Name of the picture")
     cover = models.ImageField(upload_to='project_image/')
 
@@ -156,11 +177,23 @@ class ProjectPicture(models.Model):
 class Activity(models.Model):
     resume = models.ForeignKey(ResumeProfile, related_name='activity',on_delete=models.CASCADE,)
     name = models.CharField(max_length=500, blank=False, null=False)
+    org_name = models.CharField(max_length=500, blank=True, null=True)
     activity_date = models.DateField(blank=True, null=True)
     description = models.TextField(blank=True, null=True)
 
     class Meta:
-        verbose_name_plural='activity'
+        verbose_name_plural='Activity'
+
+    def __str__(self):
+        return self.name
+
+class Expertise(models.Model):
+    resume = models.ForeignKey(ResumeProfile, related_name='expertise',on_delete=models.CASCADE,)
+    name = models.CharField(max_length=500, blank=False, null=False)
+    description = models.TextField(blank=True, null=True)
+
+    class Meta:
+        verbose_name_plural='Expertise'
 
     def __str__(self):
         return self.name

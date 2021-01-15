@@ -6,14 +6,14 @@
       <section class="ftco-section about-section">
         <div class="container">
           <div class="row d-flex my-5" data-scrollax-parent="true">
-            <div class="col-md-4 author-img" style="background-image: url({{ resume_pic.cover.url }});" data-scrollax=" properties: { translateY: '-70%'}"></div>
+            <div class="col-md-4 author-img" style="background-image: url({{ resume_pic_2.cover.url }});" data-scrollax=" properties: { translateY: '-70%'}"></div>
             <div class="col-md-2"></div>
             <div class="col-md-6 wrap ftco-animate">
               <div class="about-desc">
                 <h1 class="bold-text">About</h1>
                 <div class="p-5">
                   <h2 class="mb-5">Hi! I'm {{ resume.name }}</h2>
-                  <p>{{ resume.summary }}</p>
+                  <p>{{ resume.bio }}</p>
                   <p><a href="#" class="checkout-resume">Checkout my resume</a></p>
                   <ul class="ftco-footer-social list-unstyled mt-4">
                     <li><a href="{{ resume.twitter_url }}"><span class="icon-twitter"></span></a></li>
@@ -31,18 +31,13 @@
           	<div class="col-md-10">
           		<div class="profile ftco-animate">
 	          		<h2 class="mb-4">Profile</h2>
-	          		<h4 class="mb-4">I'm a UI/UX Designer &amp; Frontend Developer from London, UK. I aim to make a difference through my creative solution.</h4>
-	          		<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.</p>
+	          		<h5 class="mb-4">{{ resume.summary }}</h5>
 	          		<div class="row my-5">
 		          		<div class="col-md-6">
-		          			<p><strong>Name:</strong> <span>Beckham Muff</span></p>
-		          			<p><strong>Address:</strong> <span>88 West 21th Street, Suite 721 New York NY 10016</span></p>
-		          			<p><strong>Phone:</strong> <span>(123)-456-789</span></p>
-		          		</div>
-		          		<div class="col-md-6">
-		          			<p><strong>Name:</strong> <span>Beckham Muff</span></p>
-		          			<p><strong>Address:</strong> <span>88 West 21th Street, Suite 721 New York NY 10016</span></p>
-		          			<p><strong>Phone:</strong> <span>(123)-456-789</span></p>
+		          			<p><strong>Name:</strong> <span>{{ resume.name }}</span></p>
+		          			<p><strong>Address:</strong> <span>{{ resume.address }}</span></p>
+							<p><strong>Phone:</strong> <span>{{ resume.phone_number }}</span></p>
+							<p><strong>Email:</strong> <span>{{ resume.email }}</span></p>
 		          		</div>
 	          		</div>
           		</div>
@@ -54,7 +49,15 @@
           			<div class="exp-wrap py-4">
           				<div class="desc">
 	          				<h4>{{ experiences.designation }} <span> - {{ experiences.company }}</span> </h4>
-	          				<p class="location">{{ experiences.location }}</p>
+							<p class="location">{{ experiences.location }}</p>
+							{% if experiences.achievements %}
+							<h5>Achievements:</h5>
+							<p class="location"><ul>{{ experiences.achievements|linebreaks }}</ul></p>
+							{% endif %}
+							{% if experiences.responsibilities %} 
+							<h5>Responsibilities:</h5>
+							<p class="location"><ul>{{ experiences.responsibilities|linebreaks }}</ul></p>
+							{% endif %}
           				</div>
           				<div class="year">
           					<p>{{ experiences.start_date }} - {% if experiences.end_date %}{{ experiences.end_date }}{% else %}Present{% endif %}</p>
@@ -84,17 +87,16 @@
           	</div>
 		  </div>
 		  
-		  {% if skills %}
+		  {% if skill_categories %}
           <div class="row mt-5 flex-column ftco-animate">
           	<div class="col-md-8">
           		<h2 class="mb-4">My Skills</h2>
 			</div>
-			{% for c in categories %}
+			{% for c in skill_categories %}
           	<div class="col-md-6 animate-box">
 								<div class="exp-wrap py-4">
-								<h4>Category: {{ c.category_name }}</h4>
-								{% for s in skills %}
-								{% if s.category.id == c.id %}
+								<h4>Category: {{ c.category_name }}</h4>								
+								{% for s in c.skill_category.all %}
 								<div class="progress-wrap">
 									<h4>{{ s.name }}</h4>
 									<div class="progress">
@@ -104,7 +106,6 @@
 									  	</div>
 									</div>
 								</div>
-								{% endif %}
 								{% endfor %}
 								</div>
 							</div>
@@ -113,19 +114,23 @@
 		  {% endif %}
 		  <div class="row d-flex justify-content-end mt-5">
 			<div class="col-md-10">
-				{% if projects %}
+				{% if projects_catagories %}
 				<div class="exp mt-5 ftco-animate">
 				  <h2 class="mb-4">Project</h2>
-				  {% for projects in projects %}  
+				  {% for p in projects_catagories %}
+				  <div class="exp mt-5 ftco-animate">
+					<h2 class="mb-4">Category: {{ p.category_name }}</h2>  
+					{% for pr in p.project_category.all %}
 					<div class="exp-wrap py-4">
 						<div class="desc">
-						  <h4>{{ projects.name }}</h4>
-							<p class="location">Description:<ul>{{ projects.description|linebreaks }}</ul></p>
+						  <h4>{{ pr.name }}</h4>
+							<p class="location">Description:<ul>{{ pr.description|linebreaks }}</ul></p>
 						</div>
 						<div class="year">
-							<p>{{ projects.created_date }}</p>
+							<p>{{ pr.created_date }}</p>
 					  </div>
 				  </div>
+				  {% endfor %}
 				  {% endfor %}  
 			  </div>
 			  {% endif %}
@@ -140,6 +145,26 @@
 						</div>
 						<div class="year">
 							<p>{{ certifications.issue_date }}</p>
+					  </div>
+					  {% for cr_p in certifications.certificate_picture.all %}
+					  <img  class="img-responsive watch-right" style="width:500px;height:250px" alt="not found" src="{{cr_p.cover.url}}"/>
+					  {% endfor %}
+				  </div>
+				  {% endfor %}  
+			  </div>
+			  {% endif %}
+			  {% if activity %}
+				<div class="exp mt-5 ftco-animate">
+				  <h2 class="mb-4">Activity</h2>
+				  {% for activity in activity %}  
+					<div class="exp-wrap py-4">
+						<div class="desc">
+						  <h4>{{ activity.name }}</h4>
+							<p class="location">Organization: {{ activity.org_name }}</p>
+							<p class="location">Description:<ul>{{ activity.description|linebreaks }}</ul></p>
+						</div>
+						<div class="year">
+							<p>{{ activity.activity_date }}</p>
 					  </div>
 				  </div>
 				  {% endfor %}  
